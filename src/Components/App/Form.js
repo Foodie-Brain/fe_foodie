@@ -1,7 +1,7 @@
 import './Form.css'
 import { useState } from 'react'
 
-function Form() {
+const Form = () => {
   const[formData, setFormData] = useState({
     photo: '',
     name: '',
