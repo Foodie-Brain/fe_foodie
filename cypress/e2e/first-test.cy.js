@@ -4,7 +4,8 @@ describe('shows greeting to user', () => {
   });
 
 
-  it('should show a message on homepage', () => {
-    cy.get('.App')
+  it('should show three base elements on homepage', () => {
+    cy.get('.leaflet-container')
+    cy.get('form')
   })
 })
