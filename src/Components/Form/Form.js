@@ -2,57 +2,70 @@ import './Form.css'
 import { useState } from 'react'
 
 const Form = () => {
-  const [formData, setFormData] = useState({
-    photo: '',
-    name: '',
-    description: ''
-  })
-  
-  const { photo, name, description } = formData
+  const [name, setName] = useState('')
+  const [description, setDescription] = useState('')
+  const [photo, setPhoto] = useState('https://unsplash.com/photos/a-person-standing-in-the-middle-of-a-desert-at-night-GCrvnNHJAMo')
+  const [lat, setLat] = useState('3456786')
+  const [lon, setLon] = useState('47856')
   
   const graphqlEndpoint = 'https://be-foodie-brain-b49c609f52cc.herokuapp.com/graphql';
   
   const handlePhotoChange = (event) => {
     const selectedFile = event.target.files[0];
     console.log(event.target.files, 'this is event target files')
-    setFormData({ ...formData, photo: selectedFile })
   }
   
   const handleNameChange = (event) => {
-    setFormData({ ...formData, name: event.target.value })
+    setName(event.target.value)
   }
   
   const handleDescriptionChange = (event => {
-    setFormData({ ...formData, description: event.target.value })
+    setDescription(event.target.value)
   })
   
-  const submitForm = async (event) => {
-    event.preventDefault()
-    const query = `
-    {
-      reviews {
+  const mutation = `
+    mutation {
+      createReview(input: {
+        name: ${name},
+        photo: ${photo},
+        description: ${description},
+        lat: ${lat},
+        lon: ${lon}
+      }) {
+        id
+        photo
         name
         description
         lat
         lon
       }
-    }`;
-    
-    console.log(query, 'heres the query obj')
+    }
+  `;
 
+  const variables = {
+    name: name,
+    photo: photo,
+    description: description,
+    lat: lat,
+    lon: lon
+  };
+  console.log(variables, 'this is the variables variable lol ')
+  
+  const submitForm = async (event) => {
+    event.preventDefault()
     try {
       const response = await fetch(graphqlEndpoint, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json', 
         },
-        body: JSON.stringify({ query }),
+        body: JSON.stringify({ query: mutation, variables }),
       })
       if (!response.ok) {
-        throw new Error('Network response failed!');
+        throw new Error('Network response failed :(');
       }
       const data = await response.json()
-      console.log('the mutation worked', data)
+      console.log('submitForm is doing something and this is data response', data)
       
     } catch (error) {
       console.log(error)
@@ -76,16 +89,15 @@ const Form = () => {
         onChange={handleDescriptionChange}
         required
         />
-      <input
+      {/* <input
         type="file"
         name="photo"
         accept="image/*"
         onChange={handlePhotoChange}
-        />
+        /> */}
       <button type="submit">Submit</button>
     </form>
   );
 }
-
 
 export default Form
