@@ -26,11 +26,11 @@ const Form = () => {
   const mutation = `
     mutation {
       createReview(input: {
-        name: ${name},
-        photo: ${photo},
-        description: ${description},
-        lat: ${lat},
-        lon: ${lon}
+        name: "${name}",
+        photo: "${photo}",
+        description: "${description}",
+        lat: "${lat}",
+        lon: "${lon}"
       }) {
         id
         photo
@@ -73,7 +73,7 @@ const Form = () => {
   }
    
   return (
-    <form onSubmit={submitForm}>
+    <form onSubmit={submitForm} className="form">
       <input
         type="text"
         name="name"
@@ -89,12 +89,12 @@ const Form = () => {
         onChange={handleDescriptionChange}
         required
         />
-      {/* <input
+      <input
         type="file"
         name="photo"
         accept="image/*"
         onChange={handlePhotoChange}
-        /> */}
+        />
       <button type="submit">Submit</button>
     </form>
   );
