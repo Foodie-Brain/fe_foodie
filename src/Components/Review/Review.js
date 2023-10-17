@@ -10,26 +10,24 @@ const Review = () => {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ query: '{ reviews { name description lat lon } }' }), 
+      body: JSON.stringify({ query: '{ reviews { id name description } }' }), 
     })
     .then((response) => response.json())
     .then((data) => {
       const reviews = data.data.reviews;
+      console.log(reviews)
       setReviewData(reviews);
-      console.log(reviewData)
     })
   }, [])
 
   return (
-    <div className='reviews'>
-      {reviewData ? (
-        <div className='existing-reviews'>
-          {reviewData.map((review, index) => (
-            <div key={index}>
+    <div className='review-container'>
+      {reviewData.length ? (
+        <div className='review'>
+          {reviewData.map((review) => (
+            <div className='review-card' key={review.id}>
               <div>Name: {review.name}</div>
               <div>Description: {review.description}</div>
-              <div>Lat: {review.lat}</div>
-              <div>Lon: {review.lon}</div>
             </div>
           ))}
         </div>

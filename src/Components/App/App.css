@@ -1,5 +1,5 @@
 .leaflet-container,
-.reviews,
+.review-container,
 form {
   width: 33vw;
   height: 100vh;
@@ -12,5 +12,10 @@ form {
 
 .app {
   display: flex;
-  /* flex-direction: row; */
+}
+
+.review-card {
+  background-color: beige;
+  padding: 5px;
+  margin: 5px;
 }
