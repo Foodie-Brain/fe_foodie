@@ -1,4 +1,16 @@
-.leaflet-container {
-  width: 50vw;
-  height: 50vh;
+.leaflet-container,
+.reviews,
+form {
+  width: 33vw;
+  height: 100vh;
+}
+
+.reviews {
+  border-color: aqua;
+  border-width: 4px;
+}
+
+.app {
+  display: flex;
+  /* flex-direction: row; */
 }
