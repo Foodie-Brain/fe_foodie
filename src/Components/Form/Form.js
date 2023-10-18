@@ -1,27 +1,27 @@
-import './Form.css'
-import { useState } from 'react'
+import './Form.css';
+import { useState } from 'react';
 
 const Form = () => {
-  const [name, setName] = useState('')
-  const [description, setDescription] = useState('')
-  const [photo, setPhoto] = useState('https://unsplash.com/photos/a-person-standing-in-the-middle-of-a-desert-at-night-GCrvnNHJAMo')
-  const [lat, setLat] = useState('3456786')
-  const [lon, setLon] = useState('47856')
+  const [name, setName] = useState('');
+  const [description, setDescription] = useState('');
+  const [photo, setPhoto] = useState('');
+  const [lat, setLat] = useState('3456786');
+  const [lon, setLon] = useState('47856');
   
   const graphqlEndpoint = 'https://be-foodie-brain-b49c609f52cc.herokuapp.com/graphql';
   
   const handlePhotoChange = (event) => {
     const selectedFile = event.target.files[0];
     console.log(event.target.files, 'this is event target files')
-  }
+  };
   
   const handleNameChange = (event) => {
     setName(event.target.value)
-  }
+  };
   
   const handleDescriptionChange = (event => {
     setDescription(event.target.value)
-  })
+  });
   
   const mutation = `
     mutation {
@@ -49,7 +49,6 @@ const Form = () => {
     lat: lat,
     lon: lon
   };
-  console.log(variables, 'this is the variables variable lol ')
   
   const submitForm = async (event) => {
     event.preventDefault()
@@ -70,7 +69,7 @@ const Form = () => {
     } catch (error) {
       console.log(error)
     }
-  }
+  };
    
   return (
     <form onSubmit={submitForm} className="form">
@@ -98,6 +97,6 @@ const Form = () => {
       <button type="submit">Submit</button>
     </form>
   );
-}
+};
 
-export default Form
+export default Form;

@@ -1,8 +1,8 @@
-import React from 'react'
+import React from 'react';
 import { useState, useEffect } from 'react';
 
 const Review = () => {
-  const [reviewData, setReviewData] = useState([])
+  const [reviewData, setReviewData] = useState([]);
 
   useEffect(() => {
     fetch('https://be-foodie-brain-b49c609f52cc.herokuapp.com/graphql', {
@@ -10,7 +10,7 @@ const Review = () => {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ query: '{ reviews { id name description } }' }), 
+      body: JSON.stringify({ query: '{ reviews { id name description lat lon } }' }), 
     })
     .then((response) => response.json())
     .then((data) => {
@@ -18,7 +18,7 @@ const Review = () => {
       console.log(reviews)
       setReviewData(reviews);
     })
-  }, [])
+  }, []);
 
   return (
     <div className='review-container'>
@@ -35,7 +35,7 @@ const Review = () => {
         <div>Loading...</div>
       )}
     </div>
-  )
-}
+  );
+};
 
-export default Review
+export default Review;

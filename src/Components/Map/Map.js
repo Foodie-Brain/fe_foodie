@@ -21,8 +21,8 @@ const Map = () => {
       <Marker position={position}>
         <Popup>You are here</Popup>
       </Marker>
-    )
-  }
+    );
+  };
 
   // THE CODE BELOW WAS BEING USED TO LOCATE THE USER'S CURRENT LOCATION VIA GEOLOCATION
   // function LocationMarker() {
