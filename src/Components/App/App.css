@@ -1,4 +1,37 @@
-.leaflet-container {
-  width: 50vw;
-  height: 50vh;
+.leaflet-container,
+.review-container,
+form {
+  width: 33vw;
+  height: 100vh;
+}
+
+.app {
+  display: flex;
+}
+
+.review-card {
+  background-color: beige;
+  padding: 5px;
+  margin: 5px;
+}
+
+.form input {
+  width: 90%;
+  padding: 8px;
+  margin-bottom: 10px;
+}
+
+.form button {
+  width: 90%;
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

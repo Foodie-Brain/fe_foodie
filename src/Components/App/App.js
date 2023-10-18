@@ -5,9 +5,9 @@ import Review from '../Review/Review';
 
 const App = () => {
   return (
-    <div>
-      <Map />
+    <div className='app'>
       <Form />
+      <Map />
       <Review />
     </div>
   );

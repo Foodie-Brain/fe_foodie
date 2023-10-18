@@ -5,24 +5,24 @@ import { MapContainer, TileLayer, Marker, Popup, useMapEvents } from 'react-leaf
 const Map = () => {
   const [position, setPosition] = useState(null)
 
-  function LocationMarker() {
+  const LocationMarker = () => {
     const map = useMapEvents({
       click(e) {
         console.log(e)
-      const { lat, lng } = e.latlng;
-      console.log(e.latlng)
-      setPosition({ lat, lng });
-      map.flyTo(e.latlng, map.getZoom());
+        const { lat, lng } = e.latlng;
+        console.log(e.latlng)
+        setPosition({ lat, lng });
+        map.flyTo(e.latlng, map.getZoom());
       }
     })
-    console.log(position)
+    console.log(position, 'this is position in map')
   
     return position === null ? null : (
       <Marker position={position}>
         <Popup>You are here</Popup>
       </Marker>
-    )
-  }
+    );
+  };
 
   // THE CODE BELOW WAS BEING USED TO LOCATE THE USER'S CURRENT LOCATION VIA GEOLOCATION
   // function LocationMarker() {

@@ -1,91 +1,102 @@
-import './Form.css'
-import { useState } from 'react'
+import './Form.css';
+import { useState } from 'react';
 
 const Form = () => {
-  const[formData, setFormData] = useState({
-    photo: '',
-    name: '',
-    description: ''
-  })
+  const [name, setName] = useState('');
+  const [description, setDescription] = useState('');
+  const [photo, setPhoto] = useState('');
+  const [lat, setLat] = useState('3456786');
+  const [lon, setLon] = useState('47856');
   
-  const { photo, name, description } = formData
+  const graphqlEndpoint = 'https://be-foodie-brain-b49c609f52cc.herokuapp.com/graphql';
   
   const handlePhotoChange = (event) => {
     const selectedFile = event.target.files[0];
-    setFormData({ ...formData, photo: selectedFile })
-  }
+    console.log(event.target.files, 'this is event target files')
+  };
   
   const handleNameChange = (event) => {
-    setFormData({ ...formData, name: event.target.value })
-  }
+    setName(event.target.value)
+  };
   
   const handleDescriptionChange = (event => {
-    setFormData({ ...formData, description: event.target.value })
-  })
+    setDescription(event.target.value)
+  });
   
-  const submitForm = async (event) => {
-    event.preventDefault()
-    const query = `
-    {
-      reviews {
+  const mutation = `
+    mutation {
+      createReview(input: {
+        name: "${name}",
+        photo: "${photo}",
+        description: "${description}",
+        lat: "${lat}",
+        lon: "${lon}"
+      }) {
+        id
+        photo
         name
         description
         lat
         lon
       }
     }
-    `;
-    
-    const graphqlEndpoint = 'https://be-foodie-brain-b49c609f52cc.herokuapp.com/graphql';
-    
+  `;
+
+  const variables = {
+    name: name,
+    photo: photo,
+    description: description,
+    lat: lat,
+    lon: lon
+  };
+  
+  const submitForm = async (event) => {
+    event.preventDefault()
     try {
       const response = await fetch(graphqlEndpoint, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json', 
         },
-        body: JSON.stringify({ query }),
+        body: JSON.stringify({ query: mutation, variables }),
       })
       if (!response.ok) {
-        throw new Error('Network response failed!');
+        throw new Error('Network response failed :(');
       }
-      
       const data = await response.json()
-      console.log(data)
+      console.log('submitForm is doing something and this is data response', data)
       
     } catch (error) {
       console.log(error)
     }
-  }
-  
-  
+  };
+   
   return (
-    <form onSubmit={submitForm}>
-    <input
-      type="text"
-      name="name"
-      placeholder="Name"
-      value={name}
-      onChange={handleNameChange}
-      required
-      />
-    <input
-      name="description"
-      placeholder="Description"
-      value={description}
-      onChange={handleDescriptionChange}
-      required
-      />
-    <input
-      type="file"
-      name="photo"
-      accept="image/*"
-      onChange={handlePhotoChange}
-      />
-    <button type="submit">Submit</button>
-  </form>
-);
-}
+    <form onSubmit={submitForm} className="form">
+      <input
+        type="text"
+        name="name"
+        placeholder="Name"
+        value={name}
+        onChange={handleNameChange}
+        required
+        />
+      <input
+        name="description"
+        placeholder="Description"
+        value={description}
+        onChange={handleDescriptionChange}
+        required
+        />
+      <input
+        type="file"
+        name="photo"
+        accept="image/*"
+        onChange={handlePhotoChange}
+        />
+      <button type="submit">Submit</button>
+    </form>
+  );
+};
 
-
-export default Form
+export default Form;
