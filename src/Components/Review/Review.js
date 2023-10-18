@@ -1,14 +1,12 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
 
-const Review = () => {
-  const [reviewData, setReviewData] = useState([]);
+const Review = ({ data }) => {
 
   return (
     <div className='review-container'>
-      {reviewData.length ? (
+      {data.reviews.length ? (
         <div className='review'>
-          {reviewData.map((review) => (
+          {data.reviews.map((review) => (
             <div className='review-card' key={review.id}>
               <div>Name: {review.name}</div>
               <div>Description: {review.description}</div>
