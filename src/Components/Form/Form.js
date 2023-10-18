@@ -53,28 +53,28 @@ const Form = () => {
     lon: lon,
   };
 
-  const submitForm = async (event) => {
-    event.preventDefault();
-    try {
-      const response = await fetch(graphqlEndpoint, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ query: mutation, variables }),
-      });
-      if (!response.ok) {
-        throw new Error("Network response failed :(");
-      }
-      const data = await response.json();
-      console.log(
-        "submitForm is doing something and this is data response",
-        data
-      );
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  // const submitForm = async (event) => {
+  //   event.preventDefault();
+  //   try {
+  //     const response = await fetch(graphqlEndpoint, {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify({ query: mutation, variables }),
+  //     });
+  //     if (!response.ok) {
+  //       throw new Error("Network response failed :(");
+  //     }
+  //     const data = await response.json();
+  //     console.log(
+  //       "submitForm is doing something and this is data response",
+  //       data
+  //     );
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
   return (
     <form onSubmit={submitForm} className="form">
