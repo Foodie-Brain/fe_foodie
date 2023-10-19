@@ -12,7 +12,7 @@ const GET_REVIEWS = gql`
       name
       description
       lat
-      lon
+      lng
     }
   }
 `;

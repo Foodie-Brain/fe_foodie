@@ -20,7 +20,7 @@ client
           name
           description
           lat
-          lon
+          lng
         }
       }
     `,

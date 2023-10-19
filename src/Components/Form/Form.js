@@ -8,7 +8,7 @@ $name: String!
 $photo: String!
 $description: String!
 $lat: String!
-$lon: String!
+$lng: String!
 ) {
 createReview(
 input: {
@@ -16,7 +16,7 @@ name: $name
 photo: $photo
 description: $description
 lat: $lat
-lon: $lon
+lng: $lng
 }
 ) {
 id
@@ -24,7 +24,7 @@ photo
 name
 description
 lat
-lon
+lng
 }
 }
 `;
@@ -33,48 +33,43 @@ const Form = () => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [photo, setPhoto] = useState("");
-  const [lat, setLat] = useState("3456786");
-  const [lon, setLon] = useState("47856");
-  const [postReview, { data, loading, error }] = useMutation(POST_REVIEW);
-
-
+  const [postReview] = useMutation(POST_REVIEW);
+  const lat = '1234'
+  const lng = '0987'
+  
+  
   const handlePhotoChange = (event) => {
-    const selectedFile = event.target.files[0];
-    console.log(event.target.files, "this is event target files");
+    // const selectedFile = event.target.files[0];
+    setPhoto(event.target.value)
   };
-
+  
   const handleNameChange = (event) => {
     setName(event.target.value);
   };
-
+  
   const handleDescriptionChange = (event) => {
     setDescription(event.target.value);
   };
-
-
-
-  // const submitForm = async (event) => {
-  //   event.preventDefault();
-  //   try {
-  //     const response = await fetch(graphqlEndpoint, {
-  //       method: "POST",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify({ query: mutation, variables }),
-  //     });
-  //     if (!response.ok) {
-  //       throw new Error("Network response failed :(");
-  //     }
-  //     const data = await response.json();
-  //     console.log(
-  //       "submitForm is doing something and this is data response",
-  //       data
-  //     );
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
+  
+  
+  
+  const submitForm = async (event) => {
+    event.preventDefault();
+    try {
+      const { data } = await postReview({
+      variables: {
+      name,
+      photo,
+      description,
+      lat,
+      lng,
+      },
+      });
+      console.log("Mutation response data:", data);
+      } catch (error) {
+      console.error("Mutation error:", error);
+      }
+      };
 
   return (
     <form onSubmit={submitForm} className="form">
