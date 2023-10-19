@@ -123,7 +123,13 @@ const Form = () => {
         <input
           type="checkbox"
           checked={dairy === "Dairy Free"}
-          onChange={() => setDairy("Dairy Free")}
+          onChange={(e) => {
+            if (dairy === "Dairy Free") {
+              setDairy("");
+            } else {
+              setDairy("Dairy Free");
+            }
+          }}
           value="dairy free"
           id="dairyFree"
           name="Dairy Free"
@@ -132,7 +138,13 @@ const Form = () => {
         <input
           type="checkbox"
           checked={glutenFree === "Gluten Free"}
-          onChange={() => setGluten("Gluten Free")}
+          onChange={(e) => {
+            if (glutenFree === "Gluten Free") {
+              setGluten("");
+            } else {
+              setGluten("Gluten Free");
+            }
+          }}
           value="gluten free"
           id="glutenFree"
           name="Gluten Free"
@@ -141,7 +153,13 @@ const Form = () => {
         <input
           type="checkbox"
           checked={halal === "Halal"}
-          onChange={() => setHalal("Halal")}
+          onChange={(e) => {
+            if (halal === "Halal") {
+              setHalal("");
+            } else {
+              setHalal("Halal");
+            }
+          }}
           value="halal"
           id="halal"
           name="halal"
@@ -150,7 +168,13 @@ const Form = () => {
         <input
           type="checkbox"
           checked={kosher === "Kosher"}
-          onChange={() => setKosher("Kosher")}
+          onChange={(e) => {
+            if (kosher === "Kosher") {
+              setKosher("");
+            } else {
+              setKosher("Kosher");
+            }
+          }}
           value="kosher"
           id="kosher"
           name="Kosher"
@@ -159,7 +183,13 @@ const Form = () => {
         <input
           type="checkbox"
           checked={nutFree === "Nut Free"}
-          onChange={() => setNut("Nut Free")}
+          onChange={(e) => {
+            if (nutFree === "Nut Free") {
+              setNut("");
+            } else {
+              setNut("Nut Free");
+            }
+          }}
           value="nut free"
           id="nutFree"
           name="Nut Free"
@@ -168,7 +198,13 @@ const Form = () => {
         <input
           type="checkbox"
           checked={vegan === "Vegan"}
-          onChange={() => setVegan("Vegan")}
+          onChange={(e) => {
+            if (vegan === "Vegan") {
+              setVegan("");
+            } else {
+              setVegan("Vegan");
+            }
+          }}
           value="vegan"
           id="vegan"
           name="Vegan"
@@ -177,7 +213,13 @@ const Form = () => {
         <input
           type="checkbox"
           checked={vegetarian === "Vegetarian"}
-          onChange={() => setVegetarian("Vegetarian")}
+          onChange={(e) => {
+            if (vegetarian === "Vegetarian") {
+              setVegetarian("");
+            } else {
+              setVegetarian("Vegetarian");
+            }
+          }}
           value="vegetarian"
           id="vegetarian"
           name="Vegetarian"
