@@ -3,40 +3,39 @@ import { useState } from "react";
 import { gql, useMutation } from "@apollo/client";
 
 const POST_REVIEW = gql`
-mutation CreateReview(
-$name: String!
-$photo: String!
-$description: String!
-$lat: String!
-$lng: String!
-) {
-createReview(
-input: {
-name: $name
-photo: $photo
-description: $description
-lat: $lat
-lng: $lng
-}
-) {
-id
-photo
-name
-description
-lat
-lng
-}
-}
+  mutation CreateReview(
+    $name: String!
+    $photo: String!
+    $description: String!
+    $lat: String!
+    $lng: String!
+  ) {
+    createReview(
+    input: {
+      name: $name
+      photo: $photo
+      description: $description
+      lat: $lat
+      lng: $lng
+    }
+  ) {
+      id
+      photo
+      name
+      description
+      lat
+      lng
+    }
+  }
 `;
 
-const Form = () => {
+const Form = ({ lat, lng }) => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [photo, setPhoto] = useState("");
   const [postReview] = useMutation(POST_REVIEW);
-  const lat = '1234'
-  const lng = '0987'
-  
+
+  console.log(typeof lat)
   
   const handlePhotoChange = (event) => {
     // const selectedFile = event.target.files[0];
@@ -51,25 +50,23 @@ const Form = () => {
     setDescription(event.target.value);
   };
   
-  
-  
   const submitForm = async (event) => {
     event.preventDefault();
     try {
       const { data } = await postReview({
-      variables: {
-      name,
-      photo,
-      description,
-      lat,
-      lng,
-      },
+        variables: {
+          name,
+          photo,
+          description,
+          lat,
+          lng,
+        },
       });
-      console.log("Mutation response data:", data);
+        console.log("Mutation response data:", data);
       } catch (error) {
-      console.error("Mutation error:", error);
+        console.error("Mutation error:", error);
       }
-      };
+    };
 
   return (
     <form onSubmit={submitForm} className="form">
