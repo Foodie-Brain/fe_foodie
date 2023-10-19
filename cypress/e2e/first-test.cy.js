@@ -5,6 +5,6 @@ describe('shows greeting to user', () => {
 
 
   it('should show a message on homepage', () => {
-    cy.get('.App')
+    cy.get('.leaflet-container')
   })
 })
