@@ -58,6 +58,9 @@ console.log('this is data', data)
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
         <LocationMarker />
+        {data.reviews.map(review => (
+          <Marker key={review.id} position={[review.lat, review.lng]} />
+        ))}
       </MapContainer>
       <Review data={data}/>
     </div>
