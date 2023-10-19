@@ -3,30 +3,30 @@ import { useState } from "react";
 import { gql, useMutation } from "@apollo/client";
 
 const POST_REVIEW = gql`
-mutation CreateReview(
-$name: String!
-$photo: String!
-$description: String!
-$lat: String!
-$lng: String!
-) {
-createReview(
-input: {
-name: $name
-photo: $photo
-description: $description
-lat: $lat
-lng: $lng
-}
-) {
-id
-photo
-name
-description
-lat
-lng
-}
-}
+  mutation CreateReview(
+    $name: String!
+    $photo: String!
+    $description: String!
+    $lat: String!
+    $lng: String!
+  ) {
+    createReview(
+      input: {
+        name: $name
+        photo: $photo
+        description: $description
+        lat: $lat
+        lng: $lng
+      }
+    ) {
+      id
+      photo
+      name
+      description
+      lat
+      lng
+    }
+  }
 `;
 
 const Form = () => {
@@ -34,42 +34,46 @@ const Form = () => {
   const [description, setDescription] = useState("");
   const [photo, setPhoto] = useState("");
   const [postReview] = useMutation(POST_REVIEW);
-  const lat = '1234'
-  const lng = '0987'
-  
-  
+  const lat = "1234";
+  const lng = "0987";
+  const [type, setType] = useState("");
+  const [gluten, setGluten] = useState("");
+  const [halal, setHalal] = useState("");
+  const [kosher, setKosher] = useState("");
+  const [nutFree, setNut] = useState("");
+  const [vegan, setVegan] = useState("");
+  const [vegetarian, setVegetarian] = useState("");
+
   const handlePhotoChange = (event) => {
     // const selectedFile = event.target.files[0];
-    setPhoto(event.target.value)
+    setPhoto(event.target.value);
   };
-  
+
   const handleNameChange = (event) => {
     setName(event.target.value);
   };
-  
+
   const handleDescriptionChange = (event) => {
     setDescription(event.target.value);
   };
-  
-  
-  
+
   const submitForm = async (event) => {
     event.preventDefault();
     try {
       const { data } = await postReview({
-      variables: {
-      name,
-      photo,
-      description,
-      lat,
-      lng,
-      },
+        variables: {
+          name,
+          photo,
+          description,
+          lat,
+          lng,
+        },
       });
       console.log("Mutation response data:", data);
-      } catch (error) {
+    } catch (error) {
       console.error("Mutation error:", error);
-      }
-      };
+    }
+  };
 
   return (
     <form onSubmit={submitForm} className="form">
@@ -94,6 +98,69 @@ const Form = () => {
         accept="image/*"
         onChange={handlePhotoChange}
       />
+      <input
+        type="checkbox"
+        checked={type === "Dairy Free"}
+        onChange={() => setType("Dairy Free")}
+        value="dairy free"
+        id="dairyFree"
+        name="Dairy Free"
+      />
+      <label htmlFor="Dairy Free">Dairy Free</label>
+      <input
+        type="checkbox"
+        checked={gluten === "Gluten Free"}
+        onChange={() => setGluten("Gluten Free")}
+        value="gluten free"
+        id="glutenFree"
+        name="Gluten Free"
+      />
+      <label htmlFor="Gluten Free">Gluten Free</label>
+      <input
+        type="checkbox"
+        checked={halal === "Halal"}
+        onChange={() => setHalal("Halal")}
+        value="halal"
+        id="halal"
+        name="halal"
+      />
+      <label htmlFor="Halal">Halal</label>
+      <input
+        type="checkbox"
+        checked={kosher === "Kosher"}
+        onChange={() => setKosher("Kosher")}
+        value="kosher"
+        id="kosher"
+        name="Kosher"
+      />
+      <label htmlFor="Kosher">Kosher</label>
+      <input
+        type="checkbox"
+        checked={nutFree === "Nut Free"}
+        onChange={() => setNut("Nut Free")}
+        value="nut free"
+        id="nutFree"
+        name="Nut Free"
+      />
+      <label htmlFor="Nut Free">Nut Free</label>
+      <input
+        type="checkbox"
+        checked={vegan === "Vegan"}
+        onChange={() => setVegan("Vegan")}
+        value="vegan"
+        id="vegan"
+        name="Vegan"
+      />
+      <label htmlFor="Vegan">Vegan</label>
+      <input
+        type="checkbox"
+        checked={vegetarian === "Vegetarian"}
+        onChange={() => setVegetarian("Vegetarian")}
+        value="vegetarian"
+        id="vegetarian"
+        name="Vegetarian"
+      />
+      <label htmlFor="Vegetarian">Vegetarian</label>
       <button type="submit">Submit</button>
     </form>
   );
