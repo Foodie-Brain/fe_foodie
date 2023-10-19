@@ -30,15 +30,13 @@ lon
 `;
 
 const Form = () => {
-  const [postReview, { data, loading, error }] = useMutation(POST_REVIEW);
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [photo, setPhoto] = useState("");
   const [lat, setLat] = useState("3456786");
   const [lon, setLon] = useState("47856");
+  const [postReview, { data, loading, error }] = useMutation(POST_REVIEW);
 
-  const graphqlEndpoint =
-    "https://be-foodie-brain-b49c609f52cc.herokuapp.com/graphql";
 
   const handlePhotoChange = (event) => {
     const selectedFile = event.target.files[0];
