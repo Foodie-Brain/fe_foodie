@@ -9,6 +9,13 @@ const POST_REVIEW = gql`
     $description: String!
     $lat: String!
     $lng: String!
+    $dairy: String
+    $gluten: String
+    $halal: String
+    $kosher: String
+    $nutFree: String
+    $vegan: String
+    $vegetarian: String
   ) {
     createReview(
       input: {
@@ -17,6 +24,13 @@ const POST_REVIEW = gql`
         description: $description
         lat: $lat
         lng: $lng
+        dairy: $dairy
+        gluten: $gluten
+        halal: $halal
+        kosher: $kosher
+        nutFree: $nutFree
+        vegan: $vegan
+        vegetarian: $vegetarian
       }
     ) {
       id
@@ -36,8 +50,8 @@ const Form = () => {
   const [postReview] = useMutation(POST_REVIEW);
   const lat = "1234";
   const lng = "0987";
-  const [type, setType] = useState("");
-  const [gluten, setGluten] = useState("");
+  const [dairy, setDairy] = useState("");
+  const [glutenFree, setGluten] = useState("");
   const [halal, setHalal] = useState("");
   const [kosher, setKosher] = useState("");
   const [nutFree, setNut] = useState("");
@@ -67,6 +81,13 @@ const Form = () => {
           description,
           lat,
           lng,
+          dairy,
+          glutenFree,
+          halal,
+          kosher,
+          nutFree,
+          vegan,
+          vegetarian,
         },
       });
       console.log("Mutation response data:", data);
@@ -101,8 +122,8 @@ const Form = () => {
       <div className="checkboxes">
         <input
           type="checkbox"
-          checked={type === "Dairy Free"}
-          onChange={() => setType("Dairy Free")}
+          checked={dairy === "Dairy Free"}
+          onChange={() => setDairy("Dairy Free")}
           value="dairy free"
           id="dairyFree"
           name="Dairy Free"
@@ -110,7 +131,7 @@ const Form = () => {
         <label htmlFor="Dairy Free">Dairy Free</label>
         <input
           type="checkbox"
-          checked={gluten === "Gluten Free"}
+          checked={glutenFree === "Gluten Free"}
           onChange={() => setGluten("Gluten Free")}
           value="gluten free"
           id="glutenFree"
