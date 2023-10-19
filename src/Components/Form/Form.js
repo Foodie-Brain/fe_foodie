@@ -2,6 +2,33 @@ import "./Form.css";
 import { useState } from "react";
 import { gql, useMutation } from "@apollo/client";
 
+const POST_REVIEW = gql`
+mutation CreateReview(
+$name: String!
+$photo: String!
+$description: String!
+$lat: String!
+$lon: String!
+) {
+createReview(
+input: {
+name: $name
+photo: $photo
+description: $description
+lat: $lat
+lon: $lon
+}
+) {
+id
+photo
+name
+description
+lat
+lon
+}
+}
+`;
+
 const Form = () => {
   const [postReview, { data, loading, error }] = useMutation(POST_REVIEW);
   const [name, setName] = useState("");
@@ -26,32 +53,7 @@ const Form = () => {
     setDescription(event.target.value);
   };
 
-  const POST_REVIEW = gql`
-    mutation {
-      createReview(input: {
-        name: "${name}",
-        photo: "${photo}",
-        description: "${description}",
-        lat: "${lat}",
-        lon: "${lon}"
-      }) {
-        id
-        photo
-        name
-        description
-        lat
-        lon
-      }
-    }
-`;
 
-  const variables = {
-    name: name,
-    photo: photo,
-    description: description,
-    lat: lat,
-    lon: lon,
-  };
 
   // const submitForm = async (event) => {
   //   event.preventDefault();
