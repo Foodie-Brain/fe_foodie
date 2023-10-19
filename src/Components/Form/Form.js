@@ -98,69 +98,71 @@ const Form = () => {
         accept="image/*"
         onChange={handlePhotoChange}
       />
-      <input
-        type="checkbox"
-        checked={type === "Dairy Free"}
-        onChange={() => setType("Dairy Free")}
-        value="dairy free"
-        id="dairyFree"
-        name="Dairy Free"
-      />
-      <label htmlFor="Dairy Free">Dairy Free</label>
-      <input
-        type="checkbox"
-        checked={gluten === "Gluten Free"}
-        onChange={() => setGluten("Gluten Free")}
-        value="gluten free"
-        id="glutenFree"
-        name="Gluten Free"
-      />
-      <label htmlFor="Gluten Free">Gluten Free</label>
-      <input
-        type="checkbox"
-        checked={halal === "Halal"}
-        onChange={() => setHalal("Halal")}
-        value="halal"
-        id="halal"
-        name="halal"
-      />
-      <label htmlFor="Halal">Halal</label>
-      <input
-        type="checkbox"
-        checked={kosher === "Kosher"}
-        onChange={() => setKosher("Kosher")}
-        value="kosher"
-        id="kosher"
-        name="Kosher"
-      />
-      <label htmlFor="Kosher">Kosher</label>
-      <input
-        type="checkbox"
-        checked={nutFree === "Nut Free"}
-        onChange={() => setNut("Nut Free")}
-        value="nut free"
-        id="nutFree"
-        name="Nut Free"
-      />
-      <label htmlFor="Nut Free">Nut Free</label>
-      <input
-        type="checkbox"
-        checked={vegan === "Vegan"}
-        onChange={() => setVegan("Vegan")}
-        value="vegan"
-        id="vegan"
-        name="Vegan"
-      />
-      <label htmlFor="Vegan">Vegan</label>
-      <input
-        type="checkbox"
-        checked={vegetarian === "Vegetarian"}
-        onChange={() => setVegetarian("Vegetarian")}
-        value="vegetarian"
-        id="vegetarian"
-        name="Vegetarian"
-      />
-      <label htmlFor="Vegetarian">Vegetarian</label>
+      <div className="checkboxes">
+        <input
+          type="checkbox"
+          checked={type === "Dairy Free"}
+          onChange={() => setType("Dairy Free")}
+          value="dairy free"
+          id="dairyFree"
+          name="Dairy Free"
+        />
+        <label htmlFor="Dairy Free">Dairy Free</label>
+        <input
+          type="checkbox"
+          checked={gluten === "Gluten Free"}
+          onChange={() => setGluten("Gluten Free")}
+          value="gluten free"
+          id="glutenFree"
+          name="Gluten Free"
+        />
+        <label htmlFor="Gluten Free">Gluten Free</label>
+        <input
+          type="checkbox"
+          checked={halal === "Halal"}
+          onChange={() => setHalal("Halal")}
+          value="halal"
+          id="halal"
+          name="halal"
+        />
+        <label htmlFor="Halal">Halal</label>
+        <input
+          type="checkbox"
+          checked={kosher === "Kosher"}
+          onChange={() => setKosher("Kosher")}
+          value="kosher"
+          id="kosher"
+          name="Kosher"
+        />
+        <label htmlFor="Kosher">Kosher</label>
+        <input
+          type="checkbox"
+          checked={nutFree === "Nut Free"}
+          onChange={() => setNut("Nut Free")}
+          value="nut free"
+          id="nutFree"
+          name="Nut Free"
+        />
+        <label htmlFor="Nut Free">Nut Free</label>
+        <input
+          type="checkbox"
+          checked={vegan === "Vegan"}
+          onChange={() => setVegan("Vegan")}
+          value="vegan"
+          id="vegan"
+          name="Vegan"
+        />
+        <label htmlFor="Vegan">Vegan</label>
+        <input
+          type="checkbox"
+          checked={vegetarian === "Vegetarian"}
+          onChange={() => setVegetarian("Vegetarian")}
+          value="vegetarian"
+          id="vegetarian"
+          name="Vegetarian"
+        />
+        <label htmlFor="Vegetarian">Vegetarian</label>
+      </div>
       <button type="submit">Submit</button>
     </form>
   );
