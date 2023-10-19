@@ -59,7 +59,7 @@ const Form = ({ lat, lng }) => {
           photo,
           description,
           lat,
-          lng,
+          lng
         },
       });
         console.log("Mutation response data:", data);
