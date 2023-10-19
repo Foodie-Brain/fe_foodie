@@ -1,76 +1,76 @@
-import './Form.css';
-import { useState } from 'react';
+import "./Form.css";
+import { useState } from "react";
+import { gql, useMutation } from "@apollo/client";
+
+const POST_REVIEW = gql`
+mutation CreateReview(
+$name: String!
+$photo: String!
+$description: String!
+$lat: String!
+$lng: String!
+) {
+createReview(
+input: {
+name: $name
+photo: $photo
+description: $description
+lat: $lat
+lng: $lng
+}
+) {
+id
+photo
+name
+description
+lat
+lng
+}
+}
+`;
 
 const Form = () => {
-  const [name, setName] = useState('');
-  const [description, setDescription] = useState('');
-  const [photo, setPhoto] = useState('');
-  const [lat, setLat] = useState('3456786');
-  const [lon, setLon] = useState('47856');
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
+  const [photo, setPhoto] = useState("");
+  const [postReview] = useMutation(POST_REVIEW);
+  const lat = '1234'
+  const lng = '0987'
   
-  const graphqlEndpoint = 'https://be-foodie-brain-b49c609f52cc.herokuapp.com/graphql';
   
   const handlePhotoChange = (event) => {
-    const selectedFile = event.target.files[0];
-    console.log(event.target.files, 'this is event target files')
+    // const selectedFile = event.target.files[0];
+    setPhoto(event.target.value)
   };
   
   const handleNameChange = (event) => {
-    setName(event.target.value)
+    setName(event.target.value);
   };
   
-  const handleDescriptionChange = (event => {
-    setDescription(event.target.value)
-  });
-  
-  const mutation = `
-    mutation {
-      createReview(input: {
-        name: "${name}",
-        photo: "${photo}",
-        description: "${description}",
-        lat: "${lat}",
-        lon: "${lon}"
-      }) {
-        id
-        photo
-        name
-        description
-        lat
-        lon
-      }
-    }
-  `;
-
-  const variables = {
-    name: name,
-    photo: photo,
-    description: description,
-    lat: lat,
-    lon: lon
+  const handleDescriptionChange = (event) => {
+    setDescription(event.target.value);
   };
+  
+  
   
   const submitForm = async (event) => {
-    event.preventDefault()
+    event.preventDefault();
     try {
-      const response = await fetch(graphqlEndpoint, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json', 
-        },
-        body: JSON.stringify({ query: mutation, variables }),
-      })
-      if (!response.ok) {
-        throw new Error('Network response failed :(');
+      const { data } = await postReview({
+      variables: {
+      name,
+      photo,
+      description,
+      lat,
+      lng,
+      },
+      });
+      console.log("Mutation response data:", data);
+      } catch (error) {
+      console.error("Mutation error:", error);
       }
-      const data = await response.json()
-      console.log('submitForm is doing something and this is data response', data)
-      
-    } catch (error) {
-      console.log(error)
-    }
-  };
-   
+      };
+
   return (
     <form onSubmit={submitForm} className="form">
       <input
@@ -80,20 +80,20 @@ const Form = () => {
         value={name}
         onChange={handleNameChange}
         required
-        />
+      />
       <input
         name="description"
         placeholder="Description"
         value={description}
         onChange={handleDescriptionChange}
         required
-        />
+      />
       <input
         type="file"
         name="photo"
         accept="image/*"
         onChange={handlePhotoChange}
-        />
+      />
       <button type="submit">Submit</button>
     </form>
   );

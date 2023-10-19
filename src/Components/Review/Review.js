@@ -1,30 +1,12 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
 
-const Review = () => {
-  const [reviewData, setReviewData] = useState([]);
-
-  useEffect(() => {
-    fetch('https://be-foodie-brain-b49c609f52cc.herokuapp.com/graphql', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ query: '{ reviews { id name description lat lon } }' }), 
-    })
-    .then((response) => response.json())
-    .then((data) => {
-      const reviews = data.data.reviews;
-      console.log(reviews)
-      setReviewData(reviews);
-    })
-  }, []);
+const Review = ({ data }) => {
 
   return (
     <div className='review-container'>
-      {reviewData.length ? (
+      {data.reviews.length ? (
         <div className='review'>
-          {reviewData.map((review) => (
+          {data.reviews.map((review) => (
             <div className='review-card' key={review.id}>
               <div>Name: {review.name}</div>
               <div>Description: {review.description}</div>
