@@ -1,6 +1,7 @@
 import "./Form.css";
 import { useState } from "react";
 import { gql, useMutation } from "@apollo/client";
+import foodieLogo from '../.././images/foodie-brain-logo.png'
 
 const POST_REVIEW = gql`
   mutation CreateReview(
@@ -43,7 +44,7 @@ const POST_REVIEW = gql`
   }
 `;
 
-const Form = () => {
+const Form = ({ lat, lng }) => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [photo, setPhoto] = useState("");
@@ -90,36 +91,38 @@ const Form = () => {
           vegetarian,
         },
       });
-      console.log("Mutation response data:", data);
-    } catch (error) {
-      console.error("Mutation error:", error);
-    }
-  };
+        console.log("Mutation response data:", data);
+      } catch (error) {
+        console.error("Mutation error:", error);
+      }
+    };
 
   return (
-    <form onSubmit={submitForm} className="form">
-      <input
-        type="text"
-        name="name"
-        placeholder="Name"
-        value={name}
-        onChange={handleNameChange}
-        required
-      />
-      <input
-        name="description"
-        placeholder="Description"
-        value={description}
-        onChange={handleDescriptionChange}
-        required
-      />
-      <input
-        type="file"
-        name="photo"
-        accept="image/*"
-        onChange={handlePhotoChange}
-      />
-      <div className="checkboxes">
+    <div className="form-container">
+      <img src={foodieLogo} className="logo" alt='application logo'></img>
+      <form onSubmit={submitForm} className="form">
+        <input
+          type="text"
+          name="name"
+          placeholder="Name"
+          value={name}
+          onChange={handleNameChange}
+          required
+          />
+        <input
+          name="description"
+          placeholder="Description"
+          value={description}
+          onChange={handleDescriptionChange}
+          required
+          />
+        <input
+          type="file"
+          name="photo"
+          accept="image/*"
+          onChange={handlePhotoChange}
+          />
+        <div className="checkboxes">
         <input
           type="checkbox"
           checked={dairy === "Dairy Free"}
@@ -227,7 +230,8 @@ const Form = () => {
         <label htmlFor="Vegetarian">Vegetarian</label>
       </div>
       <button type="submit">Submit</button>
-    </form>
+      </form>
+    </div>
   );
 };
 
