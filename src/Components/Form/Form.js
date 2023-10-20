@@ -49,8 +49,6 @@ const Form = ({ lat, lng }) => {
   const [description, setDescription] = useState("");
   const [photo, setPhoto] = useState("");
   const [postReview] = useMutation(POST_REVIEW);
-  const lat = "1234";
-  const lng = "0987";
   const [dairy, setDairy] = useState("");
   const [glutenFree, setGluten] = useState("");
   const [halal, setHalal] = useState("");
