@@ -12,6 +12,13 @@ const GET_REVIEWS = gql`
       id
       name
       description
+      dairyFree
+      glutenFree
+      halal
+      kosher
+      nutFree
+      vegan
+      vegetarian
       lat
       lng
     }
