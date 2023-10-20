@@ -12,6 +12,7 @@ const GET_REVIEWS = gql`
       id
       name
       description
+      photoUrl
       lat
       lng
     }
@@ -60,7 +61,9 @@ if (error) return <p>Error : {error.message}</p>;
 
   return (
     <div className='app'>
-      <Form lat={lat} lng={lng}/>
+      
+        <Form lat={lat} lng={lng}/>
+
       <MapContainer
         center={{ lat: 39.739235, lng: -104.990250 }}
         zoom={6}

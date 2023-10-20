@@ -6,26 +6,26 @@ import foodieLogo from '../.././images/foodie-brain-logo.png'
 const POST_REVIEW = gql`
   mutation CreateReview(
     $name: String!
-    $photo: String!
+    $photo: Upload
     $description: String!
     $lat: String!
     $lng: String!
   ) {
     createReview(
     input: {
-      name: $name
-      photo: $photo
-      description: $description
-      lat: $lat
-      lng: $lng
+    name: $name
+    photo: $photo
+    description: $description
+    lat: $lat
+    lng: $lng
     }
   ) {
-      id
-      photo
-      name
-      description
-      lat
-      lng
+    id
+    photoUrl
+    name
+    description
+    lat
+    lng
     }
   }
 `;
@@ -39,8 +39,9 @@ const Form = ({ lat, lng }) => {
   console.log(typeof lat)
   
   const handlePhotoChange = (event) => {
-    // const selectedFile = event.target.files[0];
-    setPhoto(event.target.value)
+    const selectedFile = event.target.files[0];
+    console.log(event.target.value)
+    setPhoto(selectedFile)
   };
   
   const handleNameChange = (event) => {

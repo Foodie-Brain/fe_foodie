@@ -8,6 +8,7 @@ const Review = ({ data }) => {
         <div className='review'>
           {data.reviews.map((review) => (
             <div className='review-card' key={review.id}>
+              <div><img src={`https://be-foodie-brain-b49c609f52cc.herokuapp.com/${review.photoUrl}`}></img></div>
               <div>Name: {review.name}</div>
               <div>Description: {review.description}</div>
               <div>Latitude: {review.lat}</div>
