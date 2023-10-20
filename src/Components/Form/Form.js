@@ -71,7 +71,7 @@ const Form = ({ lat, lng }) => {
 
   return (
     <div className="form-container">
-      <img src={foodieLogo} className="logo"></img>
+      <img src={foodieLogo} className="logo" alt='application logo'></img>
       <form onSubmit={submitForm} className="form">
         <input
           type="text"
