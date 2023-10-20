@@ -30,8 +30,13 @@ form {
   cursor: pointer;
 }
 
-.form {
+.form-container,
+form {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.logo {
+  height: 150px;
 }
