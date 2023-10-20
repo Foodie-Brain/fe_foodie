@@ -36,7 +36,6 @@ const Form = ({ lat, lng }) => {
   const [photo, setPhoto] = useState("");
   const [postReview] = useMutation(POST_REVIEW);
 
-  console.log(typeof lat)
   
   const handlePhotoChange = (event) => {
     // const selectedFile = event.target.files[0];
