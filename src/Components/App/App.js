@@ -43,7 +43,7 @@ const LocationMarker = () => {
 
   return position === null ? null : (
     <Marker position={position}>
-      <Popup>Selected Position</Popup>
+      <Popup>Your Selected Location</Popup>
     </Marker>
   );
 };
@@ -57,7 +57,6 @@ const CustomPopup = ({ name, description }) => (
 
 if (loading) return <p>Loading...</p>;
 if (error) return <p>Error : {error.message}</p>;
-console.log('this is data', data)
 
   return (
     <div className='app'>

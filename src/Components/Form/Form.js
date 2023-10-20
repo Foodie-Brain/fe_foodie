@@ -1,6 +1,7 @@
 import "./Form.css";
 import { useState } from "react";
 import { gql, useMutation } from "@apollo/client";
+import foodieLogo from '../.././images/foodie-brain-logo.png'
 
 const POST_REVIEW = gql`
   mutation CreateReview(
@@ -69,30 +70,33 @@ const Form = ({ lat, lng }) => {
     };
 
   return (
-    <form onSubmit={submitForm} className="form">
-      <input
-        type="text"
-        name="name"
-        placeholder="Name"
-        value={name}
-        onChange={handleNameChange}
-        required
-      />
-      <input
-        name="description"
-        placeholder="Description"
-        value={description}
-        onChange={handleDescriptionChange}
-        required
-      />
-      <input
-        type="file"
-        name="photo"
-        accept="image/*"
-        onChange={handlePhotoChange}
-      />
-      <button type="submit">Submit</button>
-    </form>
+    <div className="form-container">
+      <img src={foodieLogo} className="logo"></img>
+      <form onSubmit={submitForm} className="form">
+        <input
+          type="text"
+          name="name"
+          placeholder="Name"
+          value={name}
+          onChange={handleNameChange}
+          required
+          />
+        <input
+          name="description"
+          placeholder="Description"
+          value={description}
+          onChange={handleDescriptionChange}
+          required
+          />
+        <input
+          type="file"
+          name="photo"
+          accept="image/*"
+          onChange={handlePhotoChange}
+          />
+        <button type="submit">Submit</button>
+      </form>
+    </div>
   );
 };
 
