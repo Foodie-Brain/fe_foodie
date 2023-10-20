@@ -4,6 +4,7 @@ import Review from '../Review/Review';
 import { useQuery, gql } from '@apollo/client';
 import { useState } from 'react';
 import { MapContainer, TileLayer, Marker, Popup, useMapEvents } from 'react-leaflet';
+import { Icon } from "leaflet";
 
 const GET_REVIEWS = gql`
   query {
@@ -16,6 +17,11 @@ const GET_REVIEWS = gql`
     }
   }
 `;
+
+const foodIcon = new Icon({
+  iconUrl: '/dinner-icon.png',
+  iconSize: [35, 35]
+})
 
 const App = () => {
 const { loading, error, data } = useQuery(GET_REVIEWS);
@@ -42,6 +48,13 @@ const LocationMarker = () => {
   );
 };
 
+const CustomPopup = ({ name, description }) => (
+  <div className="custom-popup">
+    <h2>{name}</h2>
+    <p>{description}</p>
+  </div>
+);
+
 if (loading) return <p>Loading...</p>;
 if (error) return <p>Error : {error.message}</p>;
 console.log('this is data', data)
@@ -50,8 +63,8 @@ console.log('this is data', data)
     <div className='app'>
       <Form lat={lat} lng={lng}/>
       <MapContainer
-      center={{ lat: 39.739235, lng: -104.990250 }}
-      zoom={6}
+        center={{ lat: 39.739235, lng: -104.990250 }}
+        zoom={6}
       >
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -59,7 +72,15 @@ console.log('this is data', data)
         />
         <LocationMarker />
         {data.reviews.map(review => (
-          <Marker key={review.id} position={[review.lat, review.lng]} />
+          <Marker 
+            key={review.id}
+            position={[review.lat, review.lng]}
+            icon={foodIcon}
+          >
+            <Popup>
+              <CustomPopup name={review.name} description={review.description} />
+            </Popup>
+          </Marker>
         ))}
       </MapContainer>
       <Review data={data}/>

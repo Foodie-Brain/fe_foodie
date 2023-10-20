@@ -2,7 +2,6 @@ import React from 'react';
 
 const Review = ({ data }) => {
 
-  
   return (
     <div className='review-container'>
       {data.reviews.length ? (
