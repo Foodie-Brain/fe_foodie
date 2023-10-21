@@ -10,7 +10,7 @@ const POST_REVIEW = gql`
     $description: String!
     $lat: String!
     $lng: String!
-    $dairyFree: Int = 0
+    $dairyFree: Int
     $glutenFree: Int
     $halal: Int
     $kosher: Int
