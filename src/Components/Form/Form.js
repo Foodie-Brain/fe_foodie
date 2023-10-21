@@ -30,17 +30,14 @@ const POST_REVIEW = gql`
   }
 `;
 
-const Form = ({ lat, lng }) => {
+const Form = ({ lat, lng, refetch }) => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [photo, setPhoto] = useState("");
   const [postReview] = useMutation(POST_REVIEW);
-
-  console.log(typeof lat)
   
   const handlePhotoChange = (event) => {
     const selectedFile = event.target.files[0];
-    console.log(event.target.value)
     setPhoto(selectedFile)
   };
   
@@ -54,6 +51,7 @@ const Form = ({ lat, lng }) => {
   
   const submitForm = async (event) => {
     event.preventDefault();
+    refetch();
     try {
       const { data } = await postReview({
         variables: {
@@ -68,7 +66,7 @@ const Form = ({ lat, lng }) => {
       } catch (error) {
         console.error("Mutation error:", error);
       }
-    };
+  };
 
   return (
     <div className="form-container">
