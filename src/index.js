@@ -3,29 +3,32 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './Components/App/App.js'
 import reportWebVitals from './reportWebVitals';
-import { ApolloClient, InMemoryCache, ApolloProvider, gql } from '@apollo/client';
+import {  ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
+import { createUploadLink } from "apollo-upload-client";
 
 const client = new ApolloClient({
-  uri: 'https://be-foodie-brain-b49c609f52cc.herokuapp.com/graphql',
+  link: createUploadLink({
+    uri: 'https://be-foodie-brain-b49c609f52cc.herokuapp.com/graphql',
+  }),
   cache: new InMemoryCache(),
 });
 
-
-client
-  .query({
-    query: gql`
-      query {
-        reviews {
-          id
-          name
-          description
-          lat
-          lng
-        }
-      }
-    `,
-  })
-  .then((result) => console.log(result));
+// client
+//   .query({
+//     query: gql`
+//       query {
+//         reviews {
+//           id
+//           name
+//           description
+//           photoUrl
+//           lat
+//           lng
+//         }
+//       }
+//     `,
+//   });
+  // .then((result) => console.log(result));
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

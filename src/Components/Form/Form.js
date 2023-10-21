@@ -6,7 +6,7 @@ import foodieLogo from "../.././images/foodie-brain-logo.png";
 const POST_REVIEW = gql`
   mutation CreateReview(
     $name: String!
-    $photo: String!
+    $photo: Upload
     $description: String!
     $lat: String!
     $lng: String!
@@ -35,7 +35,7 @@ const POST_REVIEW = gql`
       }
     ) {
       id
-      photo
+      photoUrl
       name
       description
       dairyFree
@@ -51,7 +51,7 @@ const POST_REVIEW = gql`
   }
 `;
 
-const Form = ({ lat, lng }) => {
+const Form = ({ lat, lng, refetch }) => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [photo, setPhoto] = useState("");
@@ -63,10 +63,11 @@ const Form = ({ lat, lng }) => {
   const [nutFree, setNut] = useState(0);
   const [vegan, setVegan] = useState(0);
   const [vegetarian, setVegetarian] = useState(0);
-
+  const [mutationError, setMutationError] = useState(false)
+  
   const handlePhotoChange = (event) => {
-    // const selectedFile = event.target.files[0];
-    setPhoto(event.target.value);
+    const selectedFile = event.target.files[0];
+    setPhoto(selectedFile)
   };
 
   const handleNameChange = (event) => {
@@ -79,6 +80,7 @@ const Form = ({ lat, lng }) => {
 
   const submitForm = async (event) => {
     event.preventDefault();
+    refetch();
     try {
       const { data } = await postReview({
         variables: {
@@ -96,15 +98,22 @@ const Form = ({ lat, lng }) => {
           vegetarian,
         },
       });
-      console.log("Mutation response data:", data);
-    } catch (error) {
-      console.error("Mutation error:", error);
-    }
+
+        console.log("Mutation response data:", data);
+        setMutationError(false)
+      } catch (error) {
+        console.error("Mutation error:", error);
+        setMutationError(true)
+        console.log(mutationError, 'this is mutation error')
+      }
   };
 
   return (
     <div className="form-container">
-      <img src={foodieLogo} className="logo" alt="application logo"></img>
+      <img src={foodieLogo} className="logo" alt='application logo'></img>
+      <div className="error-container">
+        {mutationError ? <p>Oops: please ensure you've selected all fields</p> : <p></p>}
+      </div>
       <form onSubmit={submitForm} className="form">
         <input
           type="text"
