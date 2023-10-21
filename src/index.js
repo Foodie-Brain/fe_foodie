@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './Components/App/App.js'
 import reportWebVitals from './reportWebVitals';
-import {  ApolloClient, InMemoryCache, ApolloProvider, gql } from '@apollo/client';
+import {  ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 import { createUploadLink } from "apollo-upload-client";
 
 const client = new ApolloClient({
@@ -13,22 +13,22 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
-client
-  .query({
-    query: gql`
-      query {
-        reviews {
-          id
-          name
-          description
-          photoUrl
-          lat
-          lng
-        }
-      }
-    `,
-  })
-  .then((result) => console.log(result));
+// client
+//   .query({
+//     query: gql`
+//       query {
+//         reviews {
+//           id
+//           name
+//           description
+//           photoUrl
+//           lat
+//           lng
+//         }
+//       }
+//     `,
+//   });
+  // .then((result) => console.log(result));
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
