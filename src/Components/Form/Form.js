@@ -35,6 +35,7 @@ const Form = ({ lat, lng, refetch }) => {
   const [description, setDescription] = useState("");
   const [photo, setPhoto] = useState("");
   const [postReview] = useMutation(POST_REVIEW);
+  const [mutationError, setMutationError] = useState(false)
   
   const handlePhotoChange = (event) => {
     const selectedFile = event.target.files[0];
@@ -63,14 +64,20 @@ const Form = ({ lat, lng, refetch }) => {
         },
       });
         console.log("Mutation response data:", data);
+        setMutationError(false)
       } catch (error) {
         console.error("Mutation error:", error);
+        setMutationError(true)
+        console.log(mutationError, 'this is mutation error')
       }
   };
 
   return (
     <div className="form-container">
       <img src={foodieLogo} className="logo" alt='application logo'></img>
+      <div className="error-container">
+        {mutationError ? <p>Oops: please ensure you've selected all fields</p> : <p></p>}
+      </div>
       <form onSubmit={submitForm} className="form">
         <input
           type="text"
