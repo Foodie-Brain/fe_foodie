@@ -51,29 +51,36 @@ const App = () => {
   } else if (data) {
     return (
       <div className='app'>
-        <Form lat={lat} lng={lng} refetch={refetch}/>
-        <MapContainer
-          center={{ lat: 39.739235, lng: -104.990250 }}
-          zoom={6}
-        >
-          <TileLayer
-            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          />
-          <LocationMarker />
-          {data.reviews.map(review => (
-            <Marker 
+        
+        <div className="form-box">
+          <Form lat={lat} lng={lng} refetch={refetch}/>
+        </div>
+
+        <div className='map-review-box'>
+          <MapContainer
+            center={{ lat: 39.739235, lng: -104.990250 }}
+            zoom={10}
+            className='map-container-class'
+            >
+            <TileLayer
+              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+              />
+            <LocationMarker />
+            {data.reviews.map(review => (
+              <Marker 
               key={review.id}
               position={[review.lat, review.lng]}
               icon={foodIcon}
-            >
-              <Popup>
-                <CustomPopup name={review.name} description={review.description} />
-              </Popup>
-            </Marker>
-          ))}
-        </MapContainer>
-        <Review data={data} refetch={refetch}/>
+              >
+                <Popup>
+                  <CustomPopup name={review.name} description={review.description} />
+                </Popup>
+              </Marker>
+            ))}
+          </MapContainer>
+          <Review data={data} refetch={refetch}/>
+        </div>
       </div>
     )
   } else if (error) {
