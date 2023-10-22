@@ -2,54 +2,7 @@ import "./Form.css";
 import { useState } from "react";
 import { gql, useMutation } from "@apollo/client";
 import foodieLogo from "../.././images/foodie-brain-logo.png";
-
-const POST_REVIEW = gql`
-  mutation CreateReview(
-    $name: String!
-    $photo: Upload
-    $description: String!
-    $lat: String!
-    $lng: String!
-    $dairyFree: Int = 0
-    $glutenFree: Int
-    $halal: Int
-    $kosher: Int
-    $nutFree: Int
-    $vegan: Int
-    $vegetarian: Int
-  ) {
-    createReview(
-      input: {
-        name: $name
-        photo: $photo
-        description: $description
-        lat: $lat
-        lng: $lng
-        dairyFree: $dairyFree
-        glutenFree: $glutenFree
-        halal: $halal
-        kosher: $kosher
-        nutFree: $nutFree
-        vegan: $vegan
-        vegetarian: $vegetarian
-      }
-    ) {
-      id
-      photoUrl
-      name
-      description
-      dairyFree
-      glutenFree
-      halal
-      kosher
-      nutFree
-      vegan
-      vegetarian
-      lat
-      lng
-    }
-  }
-`;
+import { POST_REVIEW } from "../../utils";
 
 const Form = ({ lat, lng, refetch }) => {
   const [name, setName] = useState("");
@@ -98,16 +51,12 @@ const Form = ({ lat, lng, refetch }) => {
           vegetarian,
         },
       });
-
-        console.log("Mutation response data:", data);
         setMutationError(false)
         setPhoto("")
         setName("");
         setDescription("");
       } catch (error) {
-        console.error("Mutation error:", error);
         setMutationError(true)
-        console.log(mutationError, 'this is mutation error')
       }
   };
 

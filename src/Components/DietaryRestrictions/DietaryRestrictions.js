@@ -20,7 +20,7 @@ const DietaryRestrictions = ({ review }) => {
         })
       }
     </div>
-  )
-}
+  );
+};
 
-export default DietaryRestrictions
+export default DietaryRestrictions;

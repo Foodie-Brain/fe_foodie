@@ -6,7 +6,7 @@ import errorPic from "../.././images/error.png";
       <img src={errorPic} className="error-pic" alt="error message"></img>
       <p className="error-message">{error.message}</p>
     </div>
-  )
- }
+  );
+ };
 
  export default Error;

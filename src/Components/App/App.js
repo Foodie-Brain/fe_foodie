@@ -6,26 +6,7 @@ import { useState } from 'react';
 import { MapContainer, TileLayer, Marker, Popup, useMapEvents } from 'react-leaflet';
 import { Icon } from "leaflet";
 import Error from '../Error/Error';
-
-const GET_REVIEWS = gql`
-  query getReviews {
-    reviews {
-      id
-      name
-      description
-      photoUrl
-      lat
-      lng
-      dairyFree
-      glutenFree
-      halal
-      kosher
-      nutFree
-      vegan
-      vegetarian
-    }
-  }
-`;
+import { GET_REVIEWS } from '../../utils';
 
 const App = () => {
   const { loading, error, data, refetch } = useQuery(GET_REVIEWS, {
@@ -34,8 +15,6 @@ const App = () => {
   const [position, setPosition] = useState(null)
   const [lat, setLat] = useState(null)
   const [lng, setLng] = useState(null)
-
-  console.log(data, 'this is data response')
 
   const LocationMarker = () => {
     const map = useMapEvents({
