@@ -1,25 +1,39 @@
+import { GET_REVIEWS, POST_REVIEW } from "../../src/utils";
+
+const hasOperationName = (req, operationName) => {
+  const { body } = req
+  return (
+    Object.prototype.hasOwnProperty.call(body, 'operationName') &&
+    body.operationName === operationName
+  )
+}
+const aliasQuery = (req, operationName) => {
+  if (hasOperationName(req, operationName)) {
+    req.alias = `gql${operationName}Query`
+  }
+}
+const aliasMutation = (req, operationName) => {
+  if (hasOperationName(req, operationName)) {
+    req.alias = `gql${operationName}Mutation`
+  }
+}
 describe('shows greeting to user', () => {
   beforeEach(() => {
-    // cy.intercept('POST', 'https://be-foodie-brain-b49c609f52cc.herokuapp.com/graphql', req => {
-    //   aliasQuery(req, 'getAllRequestByArea');
-    //   if(hasOperationName(req,'getAllRequestByArea')) {
-    //     req.reply({ fixture: 'allRequests.json' })
-    //   }
-    // })
-    cy.visit('localhost:3001')
-  });
-    
-  it('should show a message on homepage', () => {
-    cy.get('.leaflet-container')
-  })
+    cy.intercept('POST', 'https://be-foodie-brain-b49c609f52cc.herokuapp.com/graphql', req => {
+        aliasQuery(req, 'getReviews');
+        if(hasOperationName(req,'getAllRequestByArea')) {
+          req.reply({ fixture: 'allRequests.json' })
+        }
+      })
+      cy.visit('http://localhost:3000')
+    });
 
-// The code below will work once the cypressUtils.js variables are imported and implemented into this test file
-// it('should show a message on the homepage', () => {
-//   cy.visit('http://localhost:3000');
-//   cy.wait('@gqlgetReviewsQuery'); // Wait for the request with the alias 'graphqlRequest' to complete
-//   // Your test assertions here
-//   cy.get('.leaflet-container');
-// });
+
+it('should show a message on the homepage', () => {
+  cy.visit('http://localhost:3000');
+  cy.wait('@gqlgetReviewsQuery'); // Wait for the request with the alias 'graphqlRequest' to complete
+  cy.get('.leaflet-container');
+});
 
   it('should display the Foodie Brain logo', () => {
     cy.get('.logo').should('be.visible');
