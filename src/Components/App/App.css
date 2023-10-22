@@ -1,8 +1,13 @@
 .leaflet-container,
 .review-container,
+.form-container,
 form {
   width: 33vw;
-  height: 100vh;
+  max-height: 100vh;
+}
+
+.review-container {
+  overflow-y: auto;
 }
 
 .app {
@@ -10,9 +15,11 @@ form {
 }
 
 .review-card {
-  background-color: beige;
+  background-color: #8E7A71;
+  color: white;
   padding: 5px;
   margin: 5px;
+  position: relative;
 }
 
 .form input {
@@ -24,19 +31,89 @@ form {
 .form button {
   width: 90%;
   padding: 10px;
-  background-color: #007bff;
+  background-color: #c4a69d;
   color: #fff;
   border: none;
   cursor: pointer;
 }
 
-.form-container,
-form {
+form,
+.review-card,
+.error-container {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
+.form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.error-active {
+  height: 100vh;
+}
+
 .logo {
   height: 150px;
+}
+
+.review-pic {
+  height: 230px;
+  max-width: 30vw;
+}
+
+.error-pic {
+  height: 500px;
+}
+
+.loading-msg {
+  font-size: 100px;
+}
+
+.error-inactive {
+  display: none;
+}
+
+.review-description {
+  text-align: center;
+}
+
+.review {
+  padding: 5px;
+}
+
+.dietary-restriction-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}
+
+.checkboxes {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 20vw;
+}
+
+.input-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+}
+
+.dietary-restriction {
+  background-color: #ABA9BF;
+  color: black;
+  display:inline-block;
+  margin: 2px;
+  padding: 2px;
+  border-radius: 4px;
 }
