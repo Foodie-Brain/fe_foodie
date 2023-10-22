@@ -21,8 +21,8 @@ describe('shows greeting to user', () => {
   beforeEach(() => {
     cy.intercept('POST', 'https://be-foodie-brain-b49c609f52cc.herokuapp.com/graphql', req => {
         aliasQuery(req, 'getReviews');
-        if(hasOperationName(req,'getAllRequestByArea')) {
-          req.reply({ fixture: 'allRequests.json' })
+        if(hasOperationName(req,'getReviews')) {
+          req.reply({ fixture: 'reviews.json' })
         }
       })
       cy.visit('http://localhost:3000')
@@ -31,7 +31,7 @@ describe('shows greeting to user', () => {
 
 it('should show a message on the homepage', () => {
   cy.visit('http://localhost:3000');
-  cy.wait('@gqlgetReviewsQuery'); // Wait for the request with the alias 'graphqlRequest' to complete
+  cy.wait('@gqlgetReviewsQuery');
   cy.get('.leaflet-container');
 });
 
@@ -62,4 +62,18 @@ it('should show a message on the homepage', () => {
       cy.get($review).find(':nth-child(4)').should('exist');
     });
   });
-});
+
+  describe('Form User Story', () => {
+      it('should submit a new review and display it at the top of the list', () => {
+        cy.get(':nth-child(1) > h2')
+        cy.get(':nth-child(1) > .review-pic')
+        cy.get(':nth-child(1) > .review-description')
+        cy.get('button[type="submit"]').click();
+        cy.wait(5000);
+        cy.get(':nth-child(1) > h2')
+        cy.get(':nth-child(1) > .review-pic')
+        cy.get(':nth-child(1) > .review-description')
+      });
+    });
+  });
+  
