@@ -5,6 +5,7 @@ import { useQuery, gql } from '@apollo/client';
 import { useState } from 'react';
 import { MapContainer, TileLayer, Marker, Popup, useMapEvents } from 'react-leaflet';
 import { Icon } from "leaflet";
+import Error from '../Error/Error';
 
 const GET_REVIEWS = gql`
   query getReviews {
@@ -59,8 +60,8 @@ const CustomPopup = ({ name, description }) => (
   </div>
 );
 
-if (loading) return <p>Loading...</p>;
-if (error) return <p>Error : {error.message}</p>;
+if (loading) return <p className='loading-msg'>Loading...</p>;
+if (error) return <Error errorMessage={error.message}/>;
 
   return (
     <div className='app'>
