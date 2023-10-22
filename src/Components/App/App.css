@@ -1,8 +1,13 @@
 .leaflet-container,
 .review-container,
+.form-container,
 form {
   width: 33vw;
-  height: 100vh;
+  max-height: 100vh;
+}
+
+.review-container {
+  overflow-y: auto;
 }
 
 .app {
@@ -31,7 +36,6 @@ form {
 }
 
 form,
-.form-container,
 .review-card,
 .error-container {
   display: flex;
@@ -39,7 +43,14 @@ form,
   align-items: center;
 }
 
-.error-container {
+.form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+.error-active {
   height: 100vh;
 }
 
@@ -56,5 +67,9 @@ form,
 }
 
 .loading-msg {
-  font-size: 500px;
+  font-size: 100px;
+}
+
+.error-inactive {
+  display: none;
 }

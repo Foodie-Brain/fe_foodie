@@ -1,10 +1,10 @@
 import errorPic from "../.././images/error.png";
  
- const Error = ({ errorMessage }) => {
+ const Error = ({ error }) => {
   return (
-    <div className="error-container">
+    <div className={`error-container ${error ? 'error-active' : 'error-inactive'}`}>
       <img src={errorPic} className="error-pic" alt="error message"></img>
-      <p className="error-message">{errorMessage}</p>
+      <p className="error-message">{error.message}</p>
     </div>
   )
  }

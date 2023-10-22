@@ -1,7 +1,15 @@
 .checkboxes {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
+  flex-wrap: wrap;
+  width: 20vw;
+}
 
+input-wrapper {
+  width: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

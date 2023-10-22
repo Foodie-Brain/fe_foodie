@@ -137,83 +137,97 @@ const Form = ({ lat, lng, refetch }) => {
           onChange={handlePhotoChange}
         />
         <div className="checkboxes">
-          <input
-            type="checkbox"
-            checked={dairyFree === 1}
-            onChange={(e) => {
-              setDairy(e.target.checked ? 1 : 0);
-            }}
-            value="dairy free"
-            id="dairyFree"
-            name="Dairy Free"
-          />
-          <label htmlFor="Dairy Free">Dairy Free</label>
-          <input
-            type="checkbox"
-            checked={glutenFree === 1}
-            onChange={(e) => {
-              setGluten(e.target.checked ? 1 : 0);
-            }}
-            value="gluten free"
-            id="glutenFree"
-            name="Gluten Free"
-          />
-          <label htmlFor="Gluten Free">Gluten Free</label>
-          <input
-            type="checkbox"
-            checked={halal === 1}
-            onChange={(e) => {
-              setHalal(e.target.checked ? 1 : 0);
-            }}
-            value="halal"
-            id="halal"
-            name="halal"
-          />
-          <label htmlFor="Halal">Halal</label>
-          <input
-            type="checkbox"
-            checked={kosher === 1}
-            onChange={(e) => {
-              setKosher(e.target.checked ? 1 : 0);
-            }}
-            value="kosher"
-            id="kosher"
-            name="Kosher"
-          />
-          <label htmlFor="Kosher">Kosher</label>
-          <input
-            type="checkbox"
-            checked={nutFree === 1}
-            onChange={(e) => {
-              setNut(e.target.checked ? 1 : 0);
-            }}
-            value="nut free"
-            id="nutFree"
-            name="Nut Free"
-          />
-          <label htmlFor="Nut Free">Nut Free</label>
-          <input
-            type="checkbox"
-            checked={vegan === 1}
-            onChange={(e) => {
-              setVegan(e.target.checked ? 1 : 0);
-            }}
-            value="vegan"
-            id="vegan"
-            name="Vegan"
-          />
-          <label htmlFor="Vegan">Vegan</label>
-          <input
-            type="checkbox"
-            checked={vegetarian === 1}
-            onChange={(e) => {
-              setVegetarian(e.target.checked ? 1 : 0);
-            }}
-            value="vegetarian"
-            id="vegetarian"
-            name="Vegetarian"
-          />
-          <label htmlFor="Vegetarian">Vegetarian</label>
+        <div className="input-wrapper">
+            <input
+              type="checkbox"
+              checked={dairyFree === 1}
+              onChange={(e) => {
+                setDairy(e.target.checked ? 1 : 0);
+              }}
+              value="dairy free"
+              id="dairyFree"
+              name="Dairy Free"
+              />
+            <label htmlFor="Dairy Free">Dairy Free</label>
+          </div>
+          <div className="input-wrapper">
+            <input
+              type="checkbox"
+              checked={glutenFree === 1}
+              onChange={(e) => {
+                setGluten(e.target.checked ? 1 : 0);
+              }}
+              value="gluten free"
+              id="glutenFree"
+              name="Gluten Free"
+              />
+            <label htmlFor="Gluten Free">Gluten Free</label>
+          </div>
+          <div className="input-wrapper">
+            <input
+              type="checkbox"
+              checked={halal === 1}
+              onChange={(e) => {
+                setHalal(e.target.checked ? 1 : 0);
+              }}
+              value="halal"
+              id="halal"
+              name="halal"
+              />
+            <label htmlFor="Halal">Halal</label>
+          </div>
+          <div className="input-wrapper">
+            <input
+              type="checkbox"
+              checked={kosher === 1}
+              onChange={(e) => {
+                setKosher(e.target.checked ? 1 : 0);
+              }}
+              value="kosher"
+              id="kosher"
+              name="Kosher"
+            />
+            <label htmlFor="Kosher">Kosher</label>
+          </div>
+          <div className="input-wrapper">
+            <input
+              type="checkbox"
+              checked={nutFree === 1}
+              onChange={(e) => {
+                setNut(e.target.checked ? 1 : 0);
+              }}
+              value="nut free"
+              id="nutFree"
+              name="Nut Free"
+            />
+            <label htmlFor="Nut Free">Nut Free</label>
+          </div>
+          <div className="input-wrapper">
+            <input
+              type="checkbox"
+              checked={vegan === 1}
+              onChange={(e) => {
+                setVegan(e.target.checked ? 1 : 0);
+              }}
+              value="vegan"
+              id="vegan"
+              name="Vegan"
+            />
+            <label htmlFor="Vegan">Vegan</label>
+          </div>
+          <div className="input-wrapper">
+            <input
+              type="checkbox"
+              checked={vegetarian === 1}
+              onChange={(e) => {
+                setVegetarian(e.target.checked ? 1 : 0);
+              }}
+              value="vegetarian"
+              id="vegetarian"
+              name="Vegetarian"
+            />
+            <label htmlFor="Vegetarian">Vegetarian</label>
+          </div>
         </div>
         <button type="submit">Submit</button>
       </form>

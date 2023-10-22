@@ -1,5 +1,3 @@
-
-// Utility to match GraphQL mutation based on the operation name
 const hasOperationName = (req, operationName) => {
   const { body } = req
   return (
@@ -7,13 +5,11 @@ const hasOperationName = (req, operationName) => {
     body.operationName === operationName
   )
 }
-// Alias query if operationName matches
 const aliasQuery = (req, operationName) => {
   if (hasOperationName(req, operationName)) {
     req.alias = `gql${operationName}Query`
   }
 }
-// Alias mutation if operationName matches
 const aliasMutation = (req, operationName) => {
   if (hasOperationName(req, operationName)) {
     req.alias = `gql${operationName}Mutation`
@@ -36,7 +32,7 @@ const aliasMutation = (req, operationName) => {
 //   cy.get('.leaflet-container');
 // });
 
-it('should handle a 500 level response', () => {
+it.only('should handle a 500 level response', () => {
   cy.intercept('POST', 'https://be-foodie-brain-b49c609f52cc.herokuapp.com/graphql', req => {
     aliasQuery(req, 'getReviews');
     if (hasOperationName(req, 'getReviews')) {
@@ -83,3 +79,13 @@ it('should handle a 400 level response', () => {
   cy.get('.error-pic')
   cy.get('.error-message').contains('Response not successful: Received status code 400')
 });
+
+it('should handle a bad form error', () => {
+  cy.intercept('POST', 'https://be-foodie-brain-b49c609f52cc.herokuapp.com/graphql', req => {
+    aliasQuery(req, 'getReviews');
+    if (hasOperationName(req, 'getReviews')) {
+      req.reply({ fixture: 'reviews.json' });
+    }
+  });
+  cy.visit('http://localhost:3000');
+})
