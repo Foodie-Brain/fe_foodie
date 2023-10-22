@@ -55,6 +55,7 @@ const Form = ({ lat, lng, refetch }) => {
         setPhoto("")
         setName("");
         setDescription("");
+        console.log("Mutation response data:", data);
       } catch (error) {
         setMutationError(true)
       }
