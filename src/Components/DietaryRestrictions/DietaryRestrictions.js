@@ -1,6 +1,6 @@
 const DietaryRestrictions = ({ review }) => {
   const dietaryRestrictions = Object.entries(review)
-    .filter(([key, value]) => value === 1)
+    .filter(([value]) => value === 1)
     .map(([key]) => {
       const formattedKey = key
         .replace(/([A-Z])/g, ' $1')
