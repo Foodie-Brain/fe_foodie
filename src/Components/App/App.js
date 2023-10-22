@@ -7,7 +7,7 @@ import { MapContainer, TileLayer, Marker, Popup, useMapEvents } from 'react-leaf
 import { Icon } from "leaflet";
 
 const GET_REVIEWS = gql`
-  query {
+  query getReviews {
     reviews {
       id
       name
@@ -21,11 +21,13 @@ const GET_REVIEWS = gql`
 
 const App = () => {
 const { loading, error, data, refetch } = useQuery(GET_REVIEWS, {
-  pollInterval: 10000,
+  // pollInterval: 10000,
 });
 const [position, setPosition] = useState(null)
 const [lat, setLat] = useState(null)
 const [lng, setLng] = useState(null)
+
+console.log(data, 'this is data response')
 
 const LocationMarker = () => {
   const map = useMapEvents({
