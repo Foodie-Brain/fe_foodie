@@ -1,7 +1,7 @@
 import "./Form.css";
-import { useState } from "react";
-import { gql, useMutation } from "@apollo/client";
 import foodieLogo from "../.././images/foodie-brain-logo.png";
+import { useState } from "react";
+import { useMutation } from "@apollo/client";
 import { POST_REVIEW } from "../../utils";
 
 const Form = ({ lat, lng, refetch }) => {

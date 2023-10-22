@@ -1,22 +1,4 @@
-const hasOperationName = (req, operationName) => {
-  const { body } = req
-  return (
-    Object.prototype.hasOwnProperty.call(body, 'operationName') &&
-    body.operationName === operationName
-  );
-};
-
-const aliasQuery = (req, operationName) => {
-  if (hasOperationName(req, operationName)) {
-    req.alias = `gql${operationName}Query`
-  };
-};
-
-const aliasMutation = (req, operationName) => {
-  if (hasOperationName(req, operationName)) {
-    req.alias = `gql${operationName}Mutation`
-  };
-};
+import { hasOperationName, aliasQuery, aliasMutation } from "../cypressUtils";
 
 beforeEach(() => {
   cy.intercept('POST', 'https://be-foodie-brain-b49c609f52cc.herokuapp.com/graphql', req => {
@@ -26,13 +8,6 @@ beforeEach(() => {
     }
   });
 });
-
-// it('should show a message on the homepage', () => {
-//   cy.visit('http://localhost:3000');
-//   cy.wait('@gqlgetReviewsQuery'); // Wait for the request with the alias 'graphqlRequest' to complete
-//   // Your test assertions here
-//   cy.get('.leaflet-container');
-// });
 
 it('should handle a 500 level response', () => {
   cy.intercept('POST', 'https://be-foodie-brain-b49c609f52cc.herokuapp.com/graphql', req => {

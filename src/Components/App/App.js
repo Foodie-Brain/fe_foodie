@@ -1,11 +1,11 @@
 import './App.css';
 import Form from '../Form/Form';
 import Review from '../Review/Review';
-import { useQuery, gql } from '@apollo/client';
+import Error from '../Error/Error';
+import { useQuery } from '@apollo/client';
 import { useState } from 'react';
 import { MapContainer, TileLayer, Marker, Popup, useMapEvents } from 'react-leaflet';
 import { Icon } from "leaflet";
-import Error from '../Error/Error';
 import { GET_REVIEWS } from '../../utils';
 
 const App = () => {

@@ -1,7 +1,5 @@
 import './Map.css';
 
-
-
 const Map = () => {
 
 
