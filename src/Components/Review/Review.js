@@ -1,4 +1,5 @@
 import React from 'react';
+import DietaryRestrictions from '../DietaryRestrictions/DietaryRestrictions';
 
 const Review = ({ data }) => {
 
@@ -6,18 +7,21 @@ const Review = ({ data }) => {
     <div className='review-container'>
       {data.reviews.length ? (
         <div className='review'>
-          {data.reviews.map((review) => (
-            <div className='review-card' key={review.id}>
-              <img src={`https://be-foodie-brain-b49c609f52cc.herokuapp.com/${review.photoUrl}`} alt={review.name}></img>
-              <div>Name: {review.name}</div>
-              <div>Description: {review.description}</div>
-              <div>Latitude: {review.lat}</div>
-              <div>Longitude: {review.lng}</div>
-            </div>
-          ))}
+          {data.reviews.map((review) => 
+            { 
+              return (
+                <div className='review-card' key={review.id}>
+                  <h2>{review.name}</h2>
+                  <img src={`https://be-foodie-brain-b49c609f52cc.herokuapp.com/${review.photoUrl}`} alt={review.name} className='review-pic'></img>
+                  <div className='review-description'>{review.description}</div>
+                  <DietaryRestrictions review={review}/>
+                </div>
+              )
+            }
+          )}
         </div>
       ) : (
-        <div>Loading...</div>
+        <div>Loading reviews...</div>
       )}
     </div>
   );

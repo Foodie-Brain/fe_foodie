@@ -1,0 +1,51 @@
+{
+  "data": {
+    "reviews": [
+        {
+          "id": "5",
+          "name": "Pho",
+          "photoUrl": "/rails/active_storage/blobs/redirect/eyJfcmFpbHMiO…8c45dc307e02ac4fd0301a666ac/foodie-brain-logo.png",
+          "description": "Chicken broth, onion, celery, white meat, with rice noodles",
+          "lat": "39.320031446649004",
+          "lng": "-105.04573383496094",
+          "dairyFree": 1,
+          "glutenFree": 0,
+          "halal": 0,
+          "kosher": 0,
+          "nutFree": 1,
+          "vegan": 0,
+          "vegetarian": 0
+        },
+        {
+        "id": "4",
+        "name": "Enchiladas",
+        "photo": "/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBDZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--0a94269ef21510e66ae52379505038c6c10d5737/treatyaself.png",
+        "description": "Corn tortilla, red salsa, queso fresco, and shredded chicken",
+        "lat": "39.6880903110667",
+        "lng": "-104.94002900531989",
+        "dairyFree": 0,
+        "glutenFree": 0,
+        "halal": 0,
+        "kosher": 0,
+        "nutFree": 1,
+        "vegan": 0,
+        "vegetarian": 0
+      },
+      {
+        "id": "3",
+        "name": "Ganjang",
+        "photo": "/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBDZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--0a94269ef21510e66ae52379505038c6c10d5737/treatyaself.png",
+        "description": "Korean fried chicken with soy sauce and garlic",
+        "lat": "39.029879300920285",
+        "lng": "-104.87531620924705",
+        "dairyFree": 0,
+        "glutenFree": 0,
+        "halal": 0,
+        "kosher": 0,
+        "nutFree": 1,
+        "vegan": 0,
+        "vegetarian": 0
+      }
+    ]
+  }
+}
