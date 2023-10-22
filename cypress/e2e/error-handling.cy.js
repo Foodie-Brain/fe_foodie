@@ -36,7 +36,7 @@ const aliasMutation = (req, operationName) => {
 //   cy.get('.leaflet-container');
 // });
 
-beforeEach(() => {
+it('should handle a 500 level response', () => {
   cy.intercept('POST', 'https://be-foodie-brain-b49c609f52cc.herokuapp.com/graphql', req => {
     aliasQuery(req, 'getReviews');
     if (hasOperationName(req, 'getReviews')) {
@@ -53,12 +53,33 @@ beforeEach(() => {
       });
     }
   });
-});
-
-it('should handle a bad response', () => {
   cy.visit('http://localhost:3000');
   cy.wait('@gqlgetReviewsQuery'); // Wait for the request with the alias 'gqlgetReviewsQuery' to complete
+  cy.get('.error-container')
+  cy.get('.error-pic')
+  cy.get('.error-message').contains('Response not successful: Received status code 500')
+});
 
-  // Your test assertions for handling the bad response go here
-  // For example, check that your application displays an error message or handles the error gracefully.
+it('should handle a 400 level response', () => {
+  cy.intercept('POST', 'https://be-foodie-brain-b49c609f52cc.herokuapp.com/graphql', req => {
+    aliasQuery(req, 'getReviews');
+    if (hasOperationName(req, 'getReviews')) {
+      req.reply({
+        statusCode: 400, // Simulate a server error (you can use other error status codes)
+        body: {
+          errors: [
+            {
+              message: 'Server error message', // Provide an error message
+              // Add any other error details if needed
+            },
+          ],
+        },
+      });
+    }
+  });
+  cy.visit('http://localhost:3000');
+  cy.wait('@gqlgetReviewsQuery'); // Wait for the request with the alias 'gqlgetReviewsQuery' to complete
+  cy.get('.error-container')
+  cy.get('.error-pic')
+  cy.get('.error-message').contains('Response not successful: Received status code 400')
 });
