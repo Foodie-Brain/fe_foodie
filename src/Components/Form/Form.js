@@ -101,6 +101,9 @@ const Form = ({ lat, lng, refetch }) => {
 
         console.log("Mutation response data:", data);
         setMutationError(false)
+        setPhoto("")
+        setName("");
+        setDescription("");
       } catch (error) {
         console.error("Mutation error:", error);
         setMutationError(true)

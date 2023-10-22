@@ -50,7 +50,6 @@ form,
   align-items: center;
 }
 
-
 .error-active {
   height: 100vh;
 }
@@ -73,4 +72,12 @@ form,
 
 .error-inactive {
   display: none;
+}
+
+.review-description {
+  text-align: center;
+}
+
+.review {
+  padding: 5px;
 }

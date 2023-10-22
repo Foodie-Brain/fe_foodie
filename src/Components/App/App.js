@@ -16,13 +16,20 @@ const GET_REVIEWS = gql`
       photoUrl
       lat
       lng
+      dairyFree
+      glutenFree
+      halal
+      kosher
+      nutFree
+      vegan
+      vegetarian
     }
   }
 `;
 
 const App = () => {
   const { loading, error, data, refetch } = useQuery(GET_REVIEWS, {
-    // pollInterval: 10000,
+    pollInterval: 10000,
   });
   const [position, setPosition] = useState(null)
   const [lat, setLat] = useState(null)

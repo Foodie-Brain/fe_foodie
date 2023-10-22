@@ -18,14 +18,14 @@ const aliasMutation = (req, operationName) => {
   };
 };
 
-// beforeEach(() => {
-//   cy.intercept('POST', 'https://be-foodie-brain-b49c609f52cc.herokuapp.com/graphql', req => {
-//     aliasQuery(req, 'getReviews');
-//     if (hasOperationName(req, 'getReviews')) {
-//       req.reply({ fixture: 'reviews.json' });
-//     }
-//   });
-// });
+beforeEach(() => {
+  cy.intercept('POST', 'https://be-foodie-brain-b49c609f52cc.herokuapp.com/graphql', req => {
+    aliasQuery(req, 'getReviews');
+    if (hasOperationName(req, 'getReviews')) {
+      req.reply({ fixture: 'reviews.json' });
+    }
+  });
+});
 
 // it('should show a message on the homepage', () => {
 //   cy.visit('http://localhost:3000');
