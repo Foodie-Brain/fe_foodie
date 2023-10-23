@@ -3,6 +3,7 @@
 .form-container,
 form {
   width: 33vw;
+  height: 100vh;
   max-height: 100vh;
 }
 
@@ -11,6 +12,10 @@ form {
 }
 
 .app {
+  display: flex;
+}
+
+.form-map-box {
   display: flex;
 }
 
@@ -137,15 +142,59 @@ form,
     height: 50vh;
   }
 
-  .map-container-class {
+  .form-map-box {
     display: flex;
     flex-direction: row;
     width: 100vw;
-    /* height: 100vh; */
   }
 
   .review-container {
+    width: 100vw;
+    height: 50vh;
+  }
+
+  .form-container {
     width: 50vw;
     height: 50vh;
+    overflow-y: auto;
+  }
+
+  .checkboxes {
+    flex-direction: row;
+    width: 50vw;
+  }
+
+  .input-wrapper {
+    width: 20px;
+  }
+
+  label {
+    font-size: 10px;
+  }
+
+  .review-pic {
+    max-width: 50vw;
+  }
+
+  .logo {
+    height: 80px;
+  }
+
+  .checkboxes {
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 560px) {
+  .review-container {
+    height: 40vh;
+  }
+
+  .leaflet-container {
+    height: 60vh;
+  }
+
+  .form-container {
+    height: 60vh;
   }
 }

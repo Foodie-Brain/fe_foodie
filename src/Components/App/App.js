@@ -52,11 +52,8 @@ const App = () => {
     return (
       <div className='app'>
         
-        <div className="form-box">
+        <div className="form-map-box">
           <Form lat={lat} lng={lng} refetch={refetch}/>
-        </div>
-
-        <div className='map-review-box'>
           <MapContainer
             center={{ lat: 39.739235, lng: -104.990250 }}
             zoom={10}
@@ -79,6 +76,9 @@ const App = () => {
               </Marker>
             ))}
           </MapContainer>
+          </div>
+
+        <div className='map-review-box'>
           <Review data={data} refetch={refetch}/>
         </div>
       </div>

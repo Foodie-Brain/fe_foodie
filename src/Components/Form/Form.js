@@ -65,7 +65,7 @@ const Form = ({ lat, lng, refetch }) => {
     <div className="form-container">
       <img src={foodieLogo} className="logo" alt='application logo'></img>
       <div className="error-container">
-        {mutationError ? <p>Oops: please ensure you've selected all fields</p> : <p></p>}
+        {mutationError ? <p>Oops: please ensure you've selected all required fields.</p> : <p></p>}
       </div>
       <form onSubmit={submitForm} className="form">
         <input
