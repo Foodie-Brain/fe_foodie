@@ -1,15 +1,14 @@
-import "./Form.css";
 import foodieLogo from "../.././images/foodie-brain-logo.png";
 import { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { POST_REVIEW } from "../../utils";
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 
 const Form = ({ lat, lng, refetch }) => {
+  const [postReview] = useMutation(POST_REVIEW);
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [photo, setPhoto] = useState("");
-  const [postReview] = useMutation(POST_REVIEW);
   const [dairyFree, setDairy] = useState(0);
   const [glutenFree, setGluten] = useState(0);
   const [halal, setHalal] = useState(0);
@@ -66,7 +65,7 @@ const Form = ({ lat, lng, refetch }) => {
     <div className="form-container">
       <img src={foodieLogo} className="logo" alt='application logo'></img>
       <div className="error-container">
-        {mutationError ? <p>Oops: please ensure you've selected all fields</p> : <p></p>}
+        {mutationError ? <p>Oops: please ensure you've selected all required fields.</p> : <p></p>}
       </div>
       <form onSubmit={submitForm} className="form">
         <input
@@ -195,4 +194,4 @@ Form.propTypes = {
   lat: PropTypes.object,
   lng: PropTypes.object,
   refetch: PropTypes.func.isRequired
-}
+};

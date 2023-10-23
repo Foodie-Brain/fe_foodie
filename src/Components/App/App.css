@@ -3,6 +3,7 @@
 .form-container,
 form {
   width: 33vw;
+  height: 100vh;
   max-height: 100vh;
 }
 
@@ -11,6 +12,10 @@ form {
 }
 
 .app {
+  display: flex;
+}
+
+.form-map-box {
   display: flex;
 }
 
@@ -57,11 +62,12 @@ form,
 
 .logo {
   height: 150px;
+  max-width: 28vw;
 }
 
 .review-pic {
   height: 230px;
-  max-width: 30vw;
+  max-width: 28vw;
 }
 
 .error-pic {
@@ -93,6 +99,15 @@ form,
   right: 5px;
 }
 
+.dietary-restriction {
+  background-color: #c4a69d;
+  color: white;
+  display:inline-block;
+  margin: 2px;
+  padding: 2px;
+  border-radius: 4px;
+}
+
 .checkboxes {
   display: flex;
   flex-direction: row;
@@ -109,11 +124,77 @@ form,
   padding: 10px;
 }
 
-.dietary-restriction {
-  background-color: #ABA9BF;
-  color: black;
-  display:inline-block;
-  margin: 2px;
-  padding: 2px;
-  border-radius: 4px;
+@media (max-width: 1180px) {
+  .dietary-restriction-container {
+    top: auto;
+    right: auto;
+    position: static;
+  }
+}
+
+@media (max-width: 770px) {
+  .app {
+    display: initial;
+  }
+
+  .leaflet-container {
+    width: 50vw;
+    height: 50vh;
+  }
+
+  .form-map-box {
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
+  }
+
+  .review-container {
+    width: 100vw;
+    height: 50vh;
+  }
+
+  .form-container {
+    width: 50vw;
+    height: 50vh;
+    overflow-y: auto;
+  }
+
+  .checkboxes {
+    flex-direction: row;
+    width: 50vw;
+  }
+
+  .input-wrapper {
+    width: 20px;
+  }
+
+  label {
+    font-size: 10px;
+  }
+
+  .review-pic {
+    max-width: 50vw;
+  }
+
+  .logo {
+    height: 80px;
+  }
+
+  .checkboxes {
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 560px) {
+  .review-container {
+    height: 40vh;
+  }
+
+  .leaflet-container {
+    height: 60vh;
+  }
+
+  .form-container {
+    height: 60vh;
+  }
 }
