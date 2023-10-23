@@ -3,8 +3,6 @@ import DietaryRestrictions from '../DietaryRestrictions/DietaryRestrictions';
 import PropTypes from 'prop-types';
 
 const Review = ({ data }) => {
-  console.log(typeof data)
-
   return (
     <div className='review-container'>
       {data.reviews.length ? (
