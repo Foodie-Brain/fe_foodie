@@ -1,14 +1,13 @@
-import "./Form.css";
 import foodieLogo from "../.././images/foodie-brain-logo.png";
 import { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { POST_REVIEW } from "../../utils";
 
 const Form = ({ lat, lng, refetch }) => {
+  const [postReview] = useMutation(POST_REVIEW);
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [photo, setPhoto] = useState("");
-  const [postReview] = useMutation(POST_REVIEW);
   const [dairyFree, setDairy] = useState(0);
   const [glutenFree, setGluten] = useState(0);
   const [halal, setHalal] = useState(0);

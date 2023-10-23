@@ -79,7 +79,7 @@ const App = () => {
           </div>
 
         <div className='map-review-box'>
-          <Review data={data} refetch={refetch}/>
+          <Review data={data}/>
         </div>
       </div>
     )
