@@ -2,6 +2,7 @@ import foodieLogo from "../.././images/foodie-brain-logo.png";
 import { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { POST_REVIEW } from "../../utils";
+import PropTypes from 'prop-types';
 
 const Form = ({ lat, lng, refetch }) => {
   const [postReview] = useMutation(POST_REVIEW);
@@ -188,3 +189,9 @@ const Form = ({ lat, lng, refetch }) => {
 };
 
 export default Form;
+
+Form.propTypes = {
+  lat: PropTypes.object,
+  lng: PropTypes.object,
+  refetch: PropTypes.func.isRequired
+};
